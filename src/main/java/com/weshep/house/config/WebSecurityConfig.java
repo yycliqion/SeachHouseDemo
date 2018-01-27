@@ -78,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public LoginAuthFailedHandler authFailedHandler(){
-        return  new LoginAuthFailedHandler(urlEntryPoint());
+    public LoginAuthFailedHandler authFailedHandler() {
+        return new LoginAuthFailedHandler(urlEntryPoint());
     }
 }
