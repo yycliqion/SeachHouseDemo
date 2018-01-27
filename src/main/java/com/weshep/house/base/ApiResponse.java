@@ -29,9 +29,7 @@ public class ApiResponse {
         this.message = Status.SUCCESS.getStandardMessage();
     }
 
-    /**
-     * 自定义方法
-     */
+//    自定义方法
     public static ApiResponse ofMessage(int code, String message) {
         return new ApiResponse(code, message, null);
     }

@@ -15,18 +15,24 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+/**
+ * @author yycli
+ * @title JPA 配置
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = "com.weshep.house.repository")
 @EnableTransactionManagement
-public class JpaConfig {
+public class JPAConfig {
     @Bean
-    //数据源
+    /** 数据源 */
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    //实体类管理工厂
+    /**
+     * 实体类管理工厂
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         HibernateJpaVendorAdapter japVendor = new HibernateJpaVendorAdapter();
@@ -35,13 +41,13 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(japVendor);
-        //实体类包名
+        /** 实体类包名 */
         entityManagerFactoryBean.setPackagesToScan("com.weshep.house.entity");
         return entityManagerFactoryBean;
     }
 
     @Bean
-    //事务管理
+    /** 事务管理 */
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 
         JpaTransactionManager transactionManager = new JpaTransactionManager();
